@@ -1,0 +1,22 @@
+{
+  "name": "snake-maze",
+  "version": "1.0.0",
+  "description": "Snake Game with Maze",
+  "main": "index.html",
+  "scripts": {
+    "devserver": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hariomvc/snake-maze.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "bugs": {
+    "url": "https://github.com/hariomvc/snake-maze/issues"
+  },
+  "homepage": "https://github.com/hariomvc/snake-maze#readme"
+}
