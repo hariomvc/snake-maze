@@ -1,0 +1,31 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+body {
+  display: block; }
+
+.canvas {
+  display: inline-block; }
+  .canvas__container {
+    display: inline-block;
+    position: relative;
+    right: 0; }
+
+.score__card {
+  display: inline-block; }
+
+.score__text {
+  display: inline-block; }
+
+.score__value {
+  display: inline-block; }
+
+.detials__conainer {
+  display: inline-block;
+  position: relative;
+  right: 0;
+  top: 0; }

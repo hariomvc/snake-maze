@@ -1,0 +1,9 @@
+.canvas{
+    display: inline-block;
+
+    &__container{
+        display: inline-block;
+        position: relative;
+        right: 0;
+    }
+}

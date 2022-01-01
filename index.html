@@ -5,11 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/snake-maze.css">
     <title>Snake-Maze</title>
 </head>
 <body>
-    <canvas id="snake" width="608" height="608"></canvas>
+    <div id="canvasDiv" class="canvas__container"></div>
+    <div id="detials" class="detials__conainer">
+        <div class="score__card">
+            <h2 class="score__text"> Score:
+                <span id="score" class="score__value">0</span>
+            </h2>
+        </div>
+        <div class="game-control__container">
+            <div class="game-controls__box">
+                <h1 class="game-controls__heading">Initialize the Game Setup</h1>
+            </div>
+            <div class="speed-controls game-controls__box">
+                <h3 class="speed-controls__text">Speed:
+                    <button class="speed-controls__btn" onclick="gameSpeed(1)">Slow</button>
+                    <button class="speed-controls__btn" onclick="gameSpeed(2)">Medium</button>
+                    <button class="speed-controls__btn" onclick="gameSpeed(3)">Fast</button>
+                </h3>
+            </div>
+            <div class="size-conrols game-controls__box">
+                <h3 class="size-controls__text">Size:
+                    <button class="size-controls__btn" onclick="gameSize(2)">Large</button>
+                    <button class="size-controls__btn" onclick="gameSize(3)">Medium</button>
+                    <button class="size-controls__btn" onclick="gameSize(4)">Small</button>
+                </h3>
+            </div>
+            <div class="bound-conrols game-controls__box">
+                <h3 class="bound-controls__text">Game Restrictions
+                    <button class="bound-controls__btn" onclick="gameBound(0)">Infinite</button>
+                    <button class="bound-controls__btn" onclick="gameBound(1)">Wall Bounded</button>
+                    <button class="bound-controls__btn" onclick="gameBound(2)">Maze</button>
+                </h3>
+            </div>
+            <div class="initialize-controls game-controls__box" id="initialize">
+                <button class="initialize-controls__btn" onclick="start()">Initialize</button>
+            </div>
+        </div>
+    </div>
     <script src="js/script.js"></script>
     <script src="js/snake-maze.js"></script>
 </body>
