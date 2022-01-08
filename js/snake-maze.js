@@ -9,20 +9,25 @@ let bound = 1;
 let score = "0";
 let d;
 let snake = [];
+let food = [];
 
 //Set Game Speed; Will call draw() after eery speed ms
 function gameSpeed(s){
     if(s==1){
         speed = 1;
+        document.getElementById("temp").innerHTML+="gamespeed=1"+"<br>";
     }
     else if(s==2){
         speed = 2;
+        document.getElementById("temp").innerHTML+="gamespeed=2"+"<br>";
     }
     else if(s==3){
         speed = 3;
+        document.getElementById("temp").innerHTML+="gamespeed=3"+"<br>";
     }
     else{
         speed = 0;
+        document.getElementById("temp").innerHTML+="gamespeed=0"+"<br>";
     }
 }
 
@@ -30,18 +35,22 @@ function gameSpeed(s){
 function gameSize(size){
     box = 12*size;
     units = CanvasLength/box;
+    document.getElementById("temp").innerHTML+="gamesize="+size+"<br>"+"box="+box+"<br>"+"units="+units+"<br>";
 }
 
 //Set Bounds on wall or maze
 function gameBound(b){
     if (b==0){
         bound = 0;
+        document.getElementById("temp").innerHTML+="bound=0"+"<br>";
     }
     else if(b==1){
         bound = 1;
+        document.getElementById("temp").innerHTML+="bound=1"+"<br>";
     }
     else if (b==2){
         bound = 2;
+        document.getElementById("temp").innerHTML+="bound=2"+"<br>";
     }
 }
 
@@ -56,22 +65,30 @@ function start(){
     //create food
     createFood();
     
+    
     //draw canvas
     draw();
 
     //set interval
     if(speed==1){
-        let game = setInterval(draw,150);
+        let game = setInterval(draw, 150);
+        document.getElementById("temp").innerHTML+="interval=150"+"<br>";
     }
     else if(speed==2){
-        let game = setInterval(draw,100);
+        let game = setInterval(draw, 100);
+        document.getElementById("temp").innerHTML+="interval=100"+"<br>";
     }
     else if(speed==3){
-        let game = setInterval(draw,70);
+        let game = setInterval(draw, 70);
+        document.getElementById("temp").innerHTML+="interval=70"+"<br>";
     }
     else{
-        let game = setInterval(draw,100);
+        let game = setInterval(draw, 100);
+        document.getElementById("temp").innerHTML+="interval=100default"+"<br>";
     }
+    document.getElementById("detials").style.display = "none";
+    document.getElementById("canvasDiv").style.display = "inline-block";
+    document.getElementById("temp").innerHTML+="start"+"<br>";
     
 }
 
@@ -92,10 +109,11 @@ down.src = "audio/down.mp3";
 
 //create food
 function createFood(){
-    let food = {
+    food = {
         x : Math.floor(Math.random()*units) * box,
         y : Math.floor(Math.random()*units) * box
     }
+    document.getElementById("temp").innerHTML+="food created"+"<br>";
 }
 
 //Operating Game trough Keys
@@ -105,31 +123,42 @@ function direction(event){
     if( key == 37 && d != "RIGHT"){
         left.play();
         d = "LEFT";
+        document.getElementById("temp").innerHTML+="left"+"<br>";
     }else if(key == 38 && d != "DOWN"){
         d = "UP";
         up.play();
+        document.getElementById("temp").innerHTML+="up"+"<br>";
     }else if(key == 39 && d != "LEFT"){
         d = "RIGHT";
         right.play();
+        document.getElementById("temp").innerHTML+="right"+"<br>";
     }else if(key == 40 && d != "UP"){
         d = "DOWN";
         down.play();
+        document.getElementById("temp").innerHTML+="down"+"<br>";
     }
 }
 
 //updating Score
 function updatescore(score){
     document.getElementById("score").innerHTML= score;
+    document.getElementById("temp").innerHTML+="score update="+score+"<br>";
 };
 
 // cheack collision function
 function collision(head,array){
     for(let i = 0; i < array.length; i++){
         if(head.x == array[i].x && head.y == array[i].y){
+            document.getElementById("temp").innerHTML+="Over!!!"+"<br>";
             return true;
+            
         }
     }
     return false;
+}
+
+function gameover(){
+    clearInterval(game);
 }
 
 function createCanvas(){
@@ -178,11 +207,13 @@ function draw(){
     // if the snake eats the food
     if(snakeX == food.x && snakeY == food.y){
         score++;
+        updatescore(score);
         eat.play();
         food = {
             x : Math.floor(Math.random()*units) * box,
             y : Math.floor(Math.random()*units) * box
         }
+        document.getElementById("temp").innerHTML+="food eat"+"<br>";
         // we don't remove the tail
     }else{
         // remove the tail
@@ -212,18 +243,20 @@ function draw(){
     // game over
     if(bound==0){
         if(collision(newHead,snake)){
-            clearInterval(game);
+            gameover();
             dead.play();
+            document.getElementById("temp").innerHTML+="end"+"<br>";
         }
     }
-    else if(bound==1){
+    else if(bound==1||bound==2){
         if(snakeX < 0*box || snakeX > (units-1)* box || snakeY < 0*box || snakeY > (units-1)*box || collision(newHead,snake)){
-            clearInterval(game);
+            gameover();
             dead.play();
+            document.getElementById("temp").innerHTML+="end"+"<br>";
         }
     }
     
     snake.unshift(newHead);
     
-    updatescore(score);
+    
 }

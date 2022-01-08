@@ -1,0 +1,30 @@
+body{
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
+#container{
+    display: grid;
+    grid-template-rows: max-content auto;
+    
+}
+
+#detials{
+    display:inline-block;
+    position: relative;
+    right: 0;
+    top: 0;
+}
+
+#scorecard{
+    display:inline-block;
+    position: relative;
+    right: 0;
+    top: 0;
+}
+
+#canvasDiv{
+    display: inline-block;
+    position: relative;
+    left: 0;
+}
